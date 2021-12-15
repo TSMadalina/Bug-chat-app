@@ -1,0 +1,53 @@
+/* differenciate header from the rest of the body*/
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  background-color: var(--bug-app-color);
+  color: white;
+}
+
+/* headers are divided into 3 parts, taking different percents out of the whole header */
+.header_left {
+  flex: 0.3;
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+/* changing the position of the icon that its direct child of the header_left */
+.header_left > .MuiSvgIcon-root {
+  margin-left: auto;
+  margin-right: 30px;
+}
+
+.header_search {
+  flex: 0.4;
+  background-color: #5ac5ba;
+  text-align: center;
+  display: flex;
+  padding: 0 50px;
+  color: lightgrey;
+  border: 1px lightgrey solid;
+  border-radius: 6px;
+}
+
+/* target the input directly after the header_search */
+.header_search > input {
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  min-width: 35px;
+}
+
+.header_right {
+  flex: 0.3;
+  display: flex;
+  align-items: flex-end;
+}
+
+.header_right > .MuiSvgIcon-root {
+  margin-left: auto;
+  margin-right: 20px;
+}
