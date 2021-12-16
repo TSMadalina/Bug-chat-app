@@ -1,0 +1,24 @@
+.chatInput {
+  border-radius: 20px;
+}
+
+/* align input box to the center */
+.chatInput > form {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.chatInput > form > input {
+  position: fixed;
+  bottom: 30px;
+  width: 60%;
+  border: 1px solid gray;
+  border-radius: 3px;
+  padding: 20px;
+}
+
+/* we only need the button for the submit on click, that's why we are hiding it */
+.chatInput > form > button {
+  display: none !important;
+}

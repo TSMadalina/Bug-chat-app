@@ -6,11 +6,14 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SidebarOption from './SidebarOption';
 import AddIcon from '@mui/icons-material/Add';
 import db from "../../firebase";
+import {useStateValue} from '../../StateProvider'
 
 function Sidebar() {
     //setting up a variable with useState - initialize it with empty because that's 
     //how it will be in the beginning
     const [channels, setChannels] = useState([])
+
+    const [{user}] = useStateValue();
 
     //using a hook to run the code once when the sidebar component loads
     useEffect(() => {
@@ -36,7 +39,7 @@ function Sidebar() {
                 <h3>
                     {/* Icon to show offline/online */}
                     <FiberManualRecordIcon/>
-                    Tilvan Madalina
+                    {user?.displayName}
                 </h3>
             </div>
             {/* edit/create icon */}
@@ -44,19 +47,17 @@ function Sidebar() {
     
         </div>
         <SidebarOption Icon={ExpandMoreIcon} title="Channels"/>
-        <SidebarOption Icon={AddIcon} title="Add channels"/>
-
-        {/* Horizontal line */}
-       
         
         {/* Connect to database and list all the channels using sidebarOption */}
-
         {/* for every channel return a sidebar option */}
         {channels.map(channel => (
             <SidebarOption title={channel.name} id={channel.id}/>
         ))} 
+        <SidebarOption Icon={AddIcon} addChannelOption title="Add channels"/>
         
+        {/* Horizontal line */}
         <hr/>
+ 
         <SidebarOption Icon={ExpandMoreIcon} title="Direct messages"/>
         <SidebarOption Icon={AddIcon} title="Add teammates"/>
 

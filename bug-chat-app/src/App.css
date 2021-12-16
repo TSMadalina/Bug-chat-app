@@ -1,4 +1,11 @@
 /* global color variable for the app: used in header&sidebar */
 body {
   --bug-app-color: #4ebbb0;
+  overflow: hidden;
+}
+
+/* using 100vh to have the channels bar going to the bottom of the screen */
+.app_body {
+  display: flex;
+  height: 100vh;
 }

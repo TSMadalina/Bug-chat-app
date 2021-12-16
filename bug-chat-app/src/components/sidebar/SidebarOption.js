@@ -1,11 +1,41 @@
 import React from 'react';
 import './SidebarOption.css'
+import {useNavigate} from 'react-router-dom';
+import db from '../../firebase';
 
 // I need to get the icon form the sidebar component and the title of that
 // selection
-function SidebarOption({Icon, title}) {
+function SidebarOption({Icon, title, id, addChannelOption}) {
+    //when we will create a new channel we will force direct the user to 
+    //that channel using the useNavigate that works the same way a browser
+    //keeps track of the pages you visited
+    const history = useNavigate();
+
+    const selectChannel = () => {
+        if (id) {
+            history( `/room/${id}`)
+        } else {
+            history(title);
+        }
+    }
+
+    //dummy function
+    const addChannel = () => {
+        const channelName = prompt('Please enter the channel name:'); 
+        
+        //checking if the user wrote something
+        if(channelName) {
+            //creating and adding a new channel to the database
+            db.collection('rooms').add({
+                name: channelName
+            })
+        }
+    };
+
     return (
-        <div className="sidebarOption">
+        // we add a new channel on click of the add channel button
+        <div className="sidebarOption" 
+            onClick={addChannelOption ? addChannel : selectChannel}>
             {/* renders a component only if an icon exists */}
             {Icon && <Icon className="sidebarOption_icon"/>}
             

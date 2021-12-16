@@ -1,0 +1,31 @@
+/* these attributes makes the container go in the center of the screen*/
+.login {
+  height: 100vh;
+  background: #f8f8f8;
+  display: grid;
+  place-items: center;
+}
+
+/* we make the login container look like it is floating */
+.login_container {
+  padding: 100px;
+  text-align: center;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.login_container > img {
+  object-fit: contain;
+  height: 100px;
+  margin-bottom: 40px;
+}
+
+/* text-transform inherits the size of the text from parent (login_container) 
+(if not it would show everything as uppercase)*/
+.login_container > button {
+  margin-top: 50px;
+  text-transform: inherit !important;
+  background-color: #0a8d48 !important;
+  color: white;
+}

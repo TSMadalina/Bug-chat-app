@@ -2,41 +2,52 @@ import React from "react";
 import './App.css';
 import Header from "./components/header/Header";
 import Sidebar from "./components/sidebar/Sidebar";
-import {BrowserRouter as BrowserRouter, Switch, Route, Routes} from "react-router-dom";
+import Chat from "./components/chat/Chat";
+import Login from "./components/login/Login";
+import {useStateValue} from './StateProvider';
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 
 function App() {
+  const [{ user }, dispatch]  = useStateValue();
+
   return (
     <div className="App">
 
       {/* React Router for the chat screen */}
-      <BrowserRouter>
+      <Router>
+        {!user ? (
+          <Login/>
+        ): (
+          //wrap everything in a fragment (we're doing this because 
+          //we can't have more than one element next to eachother )
+          <>
+          {/* Header */}
+          <Header />
+          {/* Chat section */}
+          <div className="app_body">
 
-        {/* Header */}
-        <Header />
-        {/* Chat section */}
-        <div className="app_body">
+            {/* Sidebar */}
+            <Sidebar/>
 
-          {/* Sidebar */}
-          <Sidebar/>
+            <Routes>
+              {/* using a switch to check the route we are in and based on that
+              we will render the appropiate screen */}
+              <Route exact path="/room/:roomId">
+                {/* Chat component */}
+                <Route exact path="/room/:roomId" element={<Chat/>}/> 
+              </Route> 
 
-          <Routes>
-            {/* using a switch to check the route we are in and based on that
-            we will render the appropiate screen */}
-            <Route path="/room/:roomId">
-              Chat Screen
-              {/* <Chat/>   */}
-            </Route> 
-
-            <Route path="/room/:roomId">
-              Welcome
-            </Route> 
-            
+              <Route path="/">
+                Chat
+              </Route> 
+              
             </Routes>
-      
-        </div>
-
-      </BrowserRouter>
+        
+          </div>
+          </>
+        )}
+      </Router>
       
     </div>
   );
