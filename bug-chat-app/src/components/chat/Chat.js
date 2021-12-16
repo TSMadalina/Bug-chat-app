@@ -20,16 +20,16 @@ function Chat() {
         if(roomId) {
             //fetching the room details from db
             db.collection('rooms').doc(roomId)
-            .onSnapshot(snapshot => setRoomDetails(snapshot.data()))
-            //fetching the messages from db
-            db.collection('rooms').doc(roomId)
-            .collection('messages')
-            .orderBy('timestamp', 'asc')
-            .onSnapshot(snapshot => setRoomMessages(
-                    snapshot.docs.map(doc => doc.data()) //looking at messages from the room and writing them on screen
-                )
-            )
+            .onSnapshot((snapshot) => setRoomDetails(snapshot.data()))
         }
+            //fetching the messages from db
+        db.collection('rooms').doc(roomId)
+        .collection('messages')
+        .orderBy('timestamp', 'asc')
+        .onSnapshot(snapshot => setRoomMessages(
+            snapshot.docs.map((doc) => doc.data()) //looking at messages from the room and writing them on screen
+            )
+        );
     }, [roomId])
 
     return (

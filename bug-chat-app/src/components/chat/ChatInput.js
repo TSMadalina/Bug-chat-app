@@ -14,7 +14,7 @@ function ChatInput({channelName, channelId}) {
         if(channelId) {
             //we need access to the database were we would use the firebase server local hour
             //that recognizes were we log from and changes that timestamp
-            db.collection('rooms').doc("dkJP67RX6KoOGzN3pjSR").collection('messages')
+            db.collection('rooms').doc(channelId).collection('messages')
             .add({
                 message: input,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),

@@ -18,7 +18,7 @@ function App() {
       <Router>
         {!user ? (
           <Login/>
-        ): (
+          ): (
           //wrap everything in a fragment (we're doing this because 
           //we can't have more than one element next to eachother )
           <>
@@ -33,7 +33,7 @@ function App() {
             <Routes>
               {/* using a switch to check the route we are in and based on that
               we will render the appropiate screen */}
-              <Route exact path="/room/:roomId">
+              <Route path="/room/:roomId">
                 {/* Chat component */}
                 <Route exact path="/room/:roomId" element={<Chat/>}/> 
               </Route> 

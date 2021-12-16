@@ -9,7 +9,7 @@ function Message({message, timestamp, user, userImage}) {
                 <h4>
                     {/* toDate to return the date of the timestamp and toUTCString 
                     puts the date in the right format*/}
-                    {user} 
+                    {user} {" "}
                     <span className="message_timestamp"> 
                         {new Date(timestamp?.toDate()).toUTCString()} 
                     </span>
