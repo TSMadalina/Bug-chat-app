@@ -22,6 +22,9 @@ function ChatInput({channelName, channelId}) {
                 userImage: user.photoURL,
             });
         }
+        //change input box back to empty after sending message
+        setInput("");
+
     }
 
     return (

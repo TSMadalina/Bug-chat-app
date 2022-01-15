@@ -22,7 +22,7 @@ function Chat() {
             db.collection('rooms').doc(roomId)
             .onSnapshot((snapshot) => setRoomDetails(snapshot.data()))
         }
-            //fetching the messages from db
+        //fetching the messages from db
         db.collection('rooms').doc(roomId)
         .collection('messages')
         .orderBy('timestamp', 'asc')

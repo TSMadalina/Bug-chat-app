@@ -35,7 +35,7 @@ function Sidebar() {
     return <div className="sidebar">
         <div className="sidebar_header">
             <div className="sidebar_info">
-                <h2>Server name</h2>
+                <h2>Bugs Report</h2>
                 <h3>
                     {/* Icon to show offline/online */}
                     <FiberManualRecordIcon/>
