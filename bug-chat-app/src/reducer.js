@@ -6,20 +6,18 @@ export const initialState = {
 export const actionTypes = {
     SET_USER: 'SET_USER',
 }
- 
+
 //state is what the data looks like, action is what we're 
 //trying to do to the data (ex. pushing information, setting the user)
 const reducer = (state, action) => {
-    console.log(action);
-
     //listens to the action type and returns the state we're in and the user
-    switch(action.type) {
+    switch (action.type) {
         case actionTypes.SET_USER:
             return {
                 ...state,
                 user: action.user
             }
-        default: 
+        default:
             return state;
     }
 }

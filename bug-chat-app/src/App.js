@@ -4,12 +4,15 @@ import Header from "./components/header/Header";
 import Sidebar from "./components/sidebar/Sidebar";
 import Chat from "./components/chat/Chat";
 import Login from "./components/login/Login";
-import {useStateValue} from './StateProvider';
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import ChooseUser from "./components/login/ChooseUser";
+import Choose from "./components/login/ChooseUserOption";
+
+import { useStateValue } from './StateProvider';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 
 function App() {
-  const [{ user }, dispatch]  = useStateValue();
+  const [{ user }, dispatch] = useStateValue();
 
   return (
     <div className="App">
@@ -17,38 +20,41 @@ function App() {
       {/* React Router for the chat screen */}
       <Router>
         {!user ? (
-          <Login/>
-          ): (
+          <Login />
+        ) : (
           //wrap everything in a fragment (we're doing this because 
           //we can't have more than one element next to eachother )
+
           <>
-          {/* Header */}
-          <Header />
-          {/* Chat section */}
-          <div className="app_body">
+            {/* Chat section */}
+            <div className="app_body">
+              <Routes>
+                <Route exact path="/get-started" element={<ChooseUser />} />
+                {/* <Route exact path="/:user/rooms" element={<Choose />} /> */}
+              </Routes>
 
-            {/* Sidebar */}
-            <Sidebar/>
 
-            <Routes>
-              {/* using a switch to check the route we are in and based on that
+              <Routes>
+                {/* using a switch to check the route we are in and based on that
               we will render the appropiate screen */}
-              <Route path="/room/:roomId">
-                {/* Chat component */}
-                <Route exact path="/room/:roomId" element={<Chat/>}/> 
-              </Route> 
 
-              <Route path="/">
-                Chat
-              </Route> 
-              
-            </Routes>
-        
-          </div>
+                <Route exact path="/:user/:project/:room" element={<> <Sidebar /> <Chat /> </>}>
+                  {/* Header */}
+                  {/* <Route exact path="/room/:roomId" element={<Header/>}/> */}
+                  {/* Sidebar */}
+                  {/* <Route exact path="/room/:roomId" element={<Sidebar/>}/> */}
+
+                  {/* Chat component */}
+                  {/* <Route exact path="/room/:roomId" element={<Chat/>}/> */}
+                </Route>
+
+              </Routes>
+
+            </div>
           </>
         )}
       </Router>
-      
+
     </div>
   );
 }

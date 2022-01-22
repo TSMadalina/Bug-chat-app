@@ -2,7 +2,7 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   padding: 10px 0;
   background-color: var(--bug-app-color);
   color: white;

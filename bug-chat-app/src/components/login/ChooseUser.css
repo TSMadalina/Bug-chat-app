@@ -1,0 +1,112 @@
+/* these attributes make the container go in the center of the screen*/
+.choose {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+}
+
+.containerMember {
+  background: #f8f8f8;
+  padding-top: 50px;
+  padding-bottom: 80px;
+}
+
+/* we make the login container look like it is floating */
+.usertype_container {
+  margin-left: 20vw;
+  max-width: 700px;
+  background-color: #f8f8f8;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 35px;
+}
+
+/* text-transform inherits the size of the text from parent (login_container) 
+  (if not it would show everything as uppercase)*/
+.usertype_container > button {
+  max-width: max-content;
+  height: 44px;
+  /* width: 20em; */
+  text-transform: inherit !important;
+  padding: 0 20px 3px;
+  background-color: var(--bug-app-color);
+  color: black;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.containerTester {
+  margin: 0 auto;
+  max-width: 700px;
+  text-align: center;
+}
+
+.circle {
+  position: relative;
+  top: -35px;
+  left: calc(50% - 35px);
+  background: white;
+  border-radius: 100%;
+  height: 70px;
+  width: 70px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.workspace-container {
+  border: solid 1px gray;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+  border-radius: 4px;
+  margin-bottom: 40px;
+}
+
+.workspace {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  height: 55px;
+  padding: 0 24px;
+  border-bottom: solid 1px gray;
+}
+
+body {
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.chooseRoom {
+  width: 60vw;
+  flex-direction: column;
+  padding: 0 1rem;
+}
+
+#chooseRoom {
+  display: block;
+  justify-content: space-between;
+  color: black;
+  font-weight: 700;
+  padding: 15px 24px 20px;
+  width: 100%;
+  text-align: left;
+}
+
+#chooseRoom span {
+  font-size: 9px;
+  text-transform: lowercase;
+}
+
+.open {
+  display: inline-block;
+}
+
+h3 {
+  display: inline-block;
+  margin-bottom: 15px;
+  margin-right: 15px;
+}
