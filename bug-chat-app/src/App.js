@@ -38,7 +38,7 @@ function App() {
                 {/* using a switch to check the route we are in and based on that
               we will render the appropiate screen */}
 
-                <Route exact path="/:user/:project/:room" element={<> <Sidebar /> <Chat /> </>}>
+                <Route exact path="/:project/:room" element={<> <Sidebar /> <Chat /> </>}>
                   {/* Header */}
                   {/* <Route exact path="/room/:roomId" element={<Header/>}/> */}
                   {/* Sidebar */}

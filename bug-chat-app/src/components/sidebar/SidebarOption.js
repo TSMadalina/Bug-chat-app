@@ -26,7 +26,7 @@ function SidebarOption({ Icon, title, id, addChannelOption }) {
                 snapshot.forEach((user) => {
                     project = user.data().project
                     project = project.replace(/\s/g, "");
-                    history(`/${path}/${project}/${id}`)
+                    history(`/${project}/${id}`)
                 })
 
             })
