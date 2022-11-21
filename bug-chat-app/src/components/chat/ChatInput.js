@@ -4,15 +4,17 @@ import './ChatInput.css';
 import { useStateValue } from '../../StateProvider';
 import firebase from 'firebase/compat/app';
 import { getAuth } from "firebase/auth";
+import { useLocation } from 'react-router-dom';
 
 
 function ChatInput({ channelName, channelId, chatRef }) {
     const [input, setInput] = useState('');
     const [{ user }] = useStateValue();
 
+    const history = useLocation();
+    let email = history.pathname.split('/')[1] + "@gmail.com";
+
     const auth = getAuth();
-    const currentUser = auth.currentUser;
-    const email = currentUser.email;
 
     const sendMessage = (e) => {
         e.preventDefault(); //preventing the refreshing of the page on click the page
@@ -39,7 +41,6 @@ function ChatInput({ channelName, channelId, chatRef }) {
 
         //change input box back to empty after sending message
         setInput("");
-
     }
 
     return (

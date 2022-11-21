@@ -1,8 +1,6 @@
 import React from 'react';
 import "./Login.css";
 import { Button } from "@mui/material"
-import { getAuth } from "firebase/auth";
-
 import { auth, provider } from '../../firebase';
 import { useStateValue } from "../../StateProvider";
 import { actionTypes } from "../../reducer";

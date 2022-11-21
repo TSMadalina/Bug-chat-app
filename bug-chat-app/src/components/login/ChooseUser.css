@@ -30,7 +30,6 @@ h2 {
 .usertype_container > button {
   max-width: max-content;
   height: 44px;
-  /* width: 20em; */
   text-transform: inherit !important;
   padding: 0 20px 3px;
   background-color: var(--bug-app-color);
@@ -40,6 +39,8 @@ h2 {
 }
 
 .containerTester {
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
   max-width: 700px;
   text-align: center;
@@ -69,7 +70,6 @@ h2 {
 .workspace {
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
   height: 55px;
   padding: 0 24px;
   border-bottom: solid 1px gray;
@@ -81,7 +81,8 @@ body {
 }
 
 .chooseRoom {
-  width: 60vw;
+  display: flex;
+  min-width: 700px;
   flex-direction: column;
   padding: 0 1rem;
 }

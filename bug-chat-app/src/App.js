@@ -1,11 +1,9 @@
 import React from "react";
 import './App.css';
-import Header from "./components/header/Header";
 import Sidebar from "./components/sidebar/Sidebar";
 import Chat from "./components/chat/Chat";
 import Login from "./components/login/Login";
 import ChooseUser from "./components/login/ChooseUser";
-import Choose from "./components/login/ChooseUserOption";
 
 import { useStateValue } from './StateProvider';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -38,7 +36,7 @@ function App() {
                 {/* using a switch to check the route we are in and based on that
               we will render the appropiate screen */}
 
-                <Route exact path="/:project/:room" element={<> <Sidebar /> <Chat /> </>}>
+                <Route exact path="/:user/:project/:room" element={<> <Sidebar /> <Chat /> </>}>
                   {/* Header */}
                   {/* <Route exact path="/room/:roomId" element={<Header/>}/> */}
                   {/* Sidebar */}

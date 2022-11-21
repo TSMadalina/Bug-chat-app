@@ -3,6 +3,8 @@ import './SidebarOption.css'
 import { useNavigate } from 'react-router-dom';
 import db from '../../firebase';
 import { getAuth } from "firebase/auth";
+import { useLocation } from 'react-router-dom';
+
 
 
 // I need to get the icon form the sidebar component and the title of that
@@ -12,27 +14,23 @@ function SidebarOption({ Icon, title, id, addChannelOption }) {
     //that channel using the useNavigate that works the same way a browser
     //keeps track of the pages you visited
     const history = useNavigate();
+    const path = useLocation();
+    let email = path.pathname.split('/')[1] + "@gmail.com";
 
-    const auth = getAuth();
-    const currentUser = auth.currentUser;
-    const email = currentUser.email;
     var project;
 
     const selectChannel = () => {
         if (id) {
             let path = email.slice(0, email.search('@'))
-
             db.collection("users").where("email", "==", email).get().then((snapshot) => {
                 snapshot.forEach((user) => {
                     project = user.data().project
                     project = project.replace(/\s/g, "");
-                    history(`/${project}/${id}`)
+                    history(`/${path}/${project}/${id}`)
+
                 })
 
             })
-            // } else {
-            //     history(title);
-            // }
         }
     }
 

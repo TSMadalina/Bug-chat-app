@@ -2,11 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import "./Chat.css";
 import { useParams } from "react-router-dom";
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import db from "../../firebase";
 import Message from './Message';
 import ChatInput from './ChatInput';
-// import {selectroom} from "../features/appSlice";
 import { getAuth } from "firebase/auth";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import TextField from '@mui/material/TextField';
@@ -14,23 +12,21 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
-
+import { useLocation } from 'react-router-dom';
 
 
 function Chat() {
     const chatRef = useRef(null);
-    // const room = useSelector(selectroom);
-    // const { roomId } = useParams(); //using hook to get the room
     const { room } = useParams(); //using hook to get the room
 
     const [roomDetails, setRoomDetails] = useState([]);
     const [roomMessages, setRoomMessages] = useState([]);
 
+    const history = useLocation();
+    let email = history.pathname.split('/')[1] + "@gmail.com";
+
     const auth = getAuth();
-    const currentUser = auth.currentUser;
-    const email = currentUser.email;
 
     const [open, setOpen] = useState(false);
 
@@ -70,7 +66,6 @@ function Chat() {
                     )
             )
         })
-
     }, [room])
 
 
@@ -117,8 +112,6 @@ function Chat() {
             </div>
 
             <Dialog open={open}>
-                {console.log('return')}
-                <DialogTitle>Subscribe</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                         Report new bug:
@@ -137,7 +130,7 @@ function Chat() {
                         autoFocus
                         margin="dense"
                         id="name"
-                        label="Severitate"
+                        label="Severity"
                         type="number"
                         fullWidth
                         variant="standard"

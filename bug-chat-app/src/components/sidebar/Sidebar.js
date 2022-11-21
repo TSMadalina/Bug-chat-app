@@ -8,26 +8,25 @@ import AddIcon from '@mui/icons-material/Add';
 import db from "../../firebase";
 import { useStateValue } from '../../StateProvider'
 import { getAuth } from "firebase/auth";
+import { useLocation } from 'react-router-dom';
 
-var check = 1;
-var usersId = [];
+
 function Sidebar() {
     //setting up a variable with useState - initialize it with empty because that's 
     //how it will be in the beginning
+    const history = useLocation();
+    let email = history.pathname.split('/')[1] + "@gmail.com";
+
     const [channels, setChannels] = useState([])
     const [users, setUsers] = useState([])
 
     const [{ user }] = useStateValue();
 
-    const auth = getAuth();
-    const currentUser = auth.currentUser;
-
-
     //using a hook to run the code once when the sidebar component loads
     useEffect(() => {
         //onSnapshot updates the database in realtime, every time something it is modified
         //we make a new snapshot of it (added or deleted)
-        db.collection("users").where("email", "==", currentUser.email).get().then(snapshot => {
+        db.collection("users").where("email", "==", email).get().then(snapshot => {
             snapshot.docs.map(query =>
                 db.collection('users').doc(query.id).collection('rooms')
                     .orderBy('name', 'asc')
@@ -46,7 +45,7 @@ function Sidebar() {
         })
 
 
-        db.collection("users").where("email", "==", currentUser.email).get().then(snapshot => {
+        db.collection("users").where("email", "==", email).get().then(snapshot => {
             setUsers(
                 snapshot.docs.map(doc => ({
                     email: doc.data().email,
@@ -66,6 +65,7 @@ function Sidebar() {
             <div className="sidebar_info">
                 <h2>
                     {users.map(user => user?.project)}
+
                 </h2>
                 <h3>
                     {/* Icon to show offline/online */}

@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import "./ChooseUser.css";
 import { Button } from "@mui/material"
 import { getAuth } from "firebase/auth";
-import firebase from 'firebase/compat/app';
-import { getDatabase, ref, set } from 'firebase/database';
 import db from "../../firebase";
 
 function User() {
@@ -12,15 +10,9 @@ function User() {
 
     const auth = getAuth();
     const user = auth.currentUser;
-    console.log(user)
     const email = user.email;
 
     const [projects, setProjects] = useState([]);
-
-
-    const loadProject = (data) => {
-        console.log('Loading project', data)
-    }
 
     useEffect(() => {
         db.collection('users')
@@ -33,29 +25,13 @@ function User() {
 
     const showAll = (data) => {
         let path = email.slice(0, email.search('@'))
-        const database = getDatabase();
-        // user.reload().then(() => {
-        //     const refreshUser = auth.currentUser;
-        // })
-
-        // db.collection('users').onSnapshot(snapshot =>
-        //     snapshot.docs.map((doc) =>
-        //         set(ref(database, `users/` + doc.id)), {
-        //         email: data.email
-        //     }
-        //         // console.log(doc)
-        //     )
-        // )
-        // history(`/${path}/rooms`)
-        console.log('are uyou here')
-        console.log("reandering", projects)
+        history(`/${path}/:project/:room`)
     }
 
     const addUser = () => {
 
         db.collection("users").where("email", "==", email).get().then(snapshot => {
             if (snapshot.size == 0) {
-
                 const projectName = prompt("It looks like you are not part of any projects. Please create a new project bellow:");
                 if (projectName.length != 0) {
                     db.collection('users').add({
@@ -67,7 +43,7 @@ function User() {
                 }
             }
             else {
-                history(`/:project/:room`);
+                history(`/:user/:project/:room`);
             }
         })
     }
@@ -93,11 +69,10 @@ function User() {
                         <div className="chooseRoom">
                             {projects.map((data) =>
                                 <section>
-                                    {console.log(data)}
                                     <div className="workspace-container">
                                         <div className="workspace"> <strong> {data.email} </strong> 's projects</div>
                                         <div>
-                                            <Button onClick={() => { showAll({ data }); history(`/:project/:room`) }} style={{ flex: 1 }} id="chooseRoom">{data.project}
+                                            <Button onClick={() => { showAll({ data }); history(`/${data.email.slice(0, data.email.search('@'))}/${data.project}/:room`) }} style={{ flex: 1 }} id="chooseRoom">{data.project}
                                                 <br />
 
                                             </Button>
@@ -113,6 +88,5 @@ function User() {
     )
 
 }
-
 
 export default User

@@ -6,6 +6,10 @@
   cursor: pointer;
 }
 
+.sidebarOption h3 {
+  margin: 0;
+}
+
 .sidebarOption:hover {
   background-color: #4fb6ab;
 }
